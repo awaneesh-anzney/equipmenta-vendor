@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -5,7 +8,8 @@ import {
     Table, TableBody, TableCell,
     TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
-import { mockVendorBilling, computeBillingSummary, formatINR } from '@/data/mockdata';
+import { mockVendorBilling, computeBillingSummary, formatINR, type BillingRecord } from '@/data/mockdata';
+import { BillingDetailsDialog } from './BillingDetailsDialog';
 
 const statusCls: Record<string, string> = {
     PAID: 'bg-chart-2/15 text-chart-2 border-chart-2/20',
@@ -16,6 +20,7 @@ const statusCls: Record<string, string> = {
 
 export default function BillingPage() {
     const { total, received, outstanding } = computeBillingSummary(mockVendorBilling);
+    const [selectedBill, setSelectedBill] = useState<BillingRecord | null>(null);
 
     const summary = [
         { label: 'Total Billed', value: formatINR(total), cls: '' },
@@ -47,7 +52,7 @@ export default function BillingPage() {
             </div>
 
             {/* Table — horizontal scroll on mobile */}
-            <Card className="overflow-hidden py-0 gap-0">
+            <Card className="overflow-hidden py-0 gap-0 transition-all duration-300 hover:shadow-md hover:border-primary/40">
                 <div className="overflow-x-auto">
                     <Table className="min-w-[720px]">
                         <TableHeader>
@@ -61,7 +66,11 @@ export default function BillingPage() {
                         </TableHeader>
                         <TableBody>
                             {mockVendorBilling.map((b) => (
-                                <TableRow key={b.id} className="border-border transition-colors duration-150 cursor-default hover:bg-[color-mix(in_oklch,var(--primary)_5%,transparent)]">
+                                <TableRow
+                                    key={b.id}
+                                    className="border-border transition-colors duration-150 cursor-pointer hover:bg-[color-mix(in_oklch,var(--primary)_5%,transparent)]"
+                                    onClick={() => setSelectedBill(b)}
+                                >
                                     <TableCell className="py-3 px-3 font-semibold text-muted-foreground text-[12.5px] whitespace-nowrap">
                                         {b.id}
                                     </TableCell>
@@ -92,7 +101,14 @@ export default function BillingPage() {
                                         </Badge>
                                     </TableCell>
                                     <TableCell className="py-3 px-3">
-                                        <Button variant="outline" size="xs" className="border-border text-muted-foreground whitespace-nowrap hover:border-primary hover:text-primary hover:bg-primary/5 transition-colors duration-150">
+                                        <Button
+                                            variant="outline" size="xs"
+                                            className="border-border text-muted-foreground whitespace-nowrap hover:border-primary hover:text-primary hover:bg-primary/5 transition-colors duration-150"
+                                            onClick={(e) => {
+                                                e.stopPropagation(); // Prevent row click
+                                                // Handle PDF download
+                                            }}
+                                        >
                                             ⬇ PDF
                                         </Button>
                                     </TableCell>
@@ -102,6 +118,12 @@ export default function BillingPage() {
                     </Table>
                 </div>
             </Card>
+
+            <BillingDetailsDialog
+                bill={selectedBill}
+                open={!!selectedBill}
+                onClose={() => setSelectedBill(null)}
+            />
         </div>
     );
 }

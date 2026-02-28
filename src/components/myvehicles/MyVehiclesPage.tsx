@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { mockVendorVehicles } from '@/data/mockdata';
+import { mockVendorVehicles, type Vehicle } from '@/data/mockdata';
 import { AddVehicleDialog } from './AddVehicleDialog';
+import { VehicleTrackingDialog } from './VehicleTrackingDialog';
 
 const statusCls: Record<string, string> = {
     ACTIVE: 'bg-chart-2/15 text-chart-2 border-chart-2/20',
@@ -27,6 +28,7 @@ function getIcon(category: string): string {
 
 export default function MyVehiclesPage() {
     const [isAddOpen, setIsAddOpen] = useState(false);
+    const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
 
     const handleAddVehicle = (data: any) => {
         console.log('Vehicle Added:', data);
@@ -55,7 +57,11 @@ export default function MyVehiclesPage() {
             {/* Grid — 1 col mobile, 2 col sm, 3 col lg */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5">
                 {mockVendorVehicles.map((v) => (
-                    <Card key={v.id} className="gap-0 py-0 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:border-primary/40">
+                    <Card
+                        key={v.id}
+                        className="gap-0 py-0 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:border-primary/40 cursor-pointer"
+                        onClick={() => setSelectedVehicle(v)}
+                    >
                         <CardContent className="p-4">
                             {/* Top row */}
                             <div className="mb-3 flex items-center justify-between">
@@ -97,6 +103,12 @@ export default function MyVehiclesPage() {
                 open={isAddOpen}
                 onClose={() => setIsAddOpen(false)}
                 onSubmit={handleAddVehicle}
+            />
+
+            <VehicleTrackingDialog
+                vehicle={selectedVehicle}
+                open={!!selectedVehicle}
+                onClose={() => setSelectedVehicle(null)}
             />
         </div>
     );
