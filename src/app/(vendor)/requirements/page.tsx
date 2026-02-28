@@ -1,9 +1,5 @@
-import React from 'react'
+import RequirementsPage from '@/components/requirements/RequirementsPage';
 
-const page = () => {
-    return (
-        <div>Requirements page</div>
-    )
+export default function Page() {
+    return <RequirementsPage />;
 }
-
-export default page

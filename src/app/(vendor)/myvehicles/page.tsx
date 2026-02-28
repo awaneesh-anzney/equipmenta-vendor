@@ -1,9 +1,5 @@
-import React from 'react'
+import MyVehiclesPage from '@/components/myvehicles/MyVehiclesPage';
 
-const page = () => {
-    return (
-        <div>My Vehicles page</div>
-    )
+export default function Page() {
+    return <MyVehiclesPage />;
 }
-
-export default page

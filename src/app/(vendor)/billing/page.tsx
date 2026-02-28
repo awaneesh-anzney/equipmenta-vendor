@@ -1,9 +1,5 @@
-import React from 'react'
+import BillingPage from '@/components/billing/BillingPage';
 
-const page = () => {
-    return (
-        <div>Billing page</div>
-    )
+export default function Page() {
+    return <BillingPage />;
 }
-
-export default page
