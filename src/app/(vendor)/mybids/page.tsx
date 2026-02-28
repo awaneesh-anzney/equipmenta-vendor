@@ -1,9 +1,5 @@
-import React from 'react'
+import MyBidsPage from '@/components/mybids/MyBidsPage';
 
-const page = () => {
-    return (
-        <div>My Bids page</div>
-    )
+export default function Page() {
+    return <MyBidsPage />;
 }
-
-export default page

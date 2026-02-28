@@ -1,9 +1,5 @@
-import React from 'react'
+import WorkOrdersPage from '@/components/workorders/WorkOrdersPage';
 
-const page = () => {
-    return (
-        <div>Work Orders page</div>
-    )
+export default function Page() {
+    return <WorkOrdersPage />;
 }
-
-export default page
