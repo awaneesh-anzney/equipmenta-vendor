@@ -1,48 +1,45 @@
 "use client";
 
-import { currentVendor } from "@/data/mockdata";
-import StatsRow from "./StatsRow";
-import RevenueTrendChart from "./RevenueTrendChart";
-import FleetStatusChart from "./FleetStatusChart";
-import RecentRequirementsTable from "./RecentRequirementsTable";
-import BidActivityChart from "./BidActivityChart";
-import QuickStats from "./QuickStats";
+import StatsCards from "./StatsCards";
+import EarningsTrend from "./EarningsTrend";
+import StatusCard from "./StatusCard";
+import LiveRequirements from "./LiveRequirements";
+import ActivityTable from "./ActivityTable";
 
 export default function DashboardPage() {
     return (
-        <div className="flex w-full flex-col gap-6 pb-8">
-            {/* Welcome Header */}
-            <div>
-                <h2 className="text-lg font-bold text-foreground sm:text-xl">
-                    Welcome back, {currentVendor.name} 👋
-                </h2>
-                <p className="mt-1 text-sm text-muted-foreground">
-                    {currentVendor.company} — here&apos;s a snapshot of your activity
-                </p>
-            </div>
+        <div className="flex flex-col gap-4 p-3 md:p-5 bg-background min-h-screen text-foreground">
+            {/* Header removed as requested */}
 
-            {/* Top Stats Row */}
-            <StatsRow />
+            {/* Main Layout Container with tighter gap:3 */}
+            <div className="flex flex-col gap-4">
 
-            {/* Middle Row: Revenue Trend (Left) & Fleet Status (Right) */}
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-                <div className="lg:col-span-2">
-                    <RevenueTrendChart />
-                </div>
-                <div className="lg:col-span-1">
-                    <FleetStatusChart />
-                </div>
-            </div>
+                {/* Row 1: Compact Stats */}
+                <section className="px-1">
+                    <StatsCards />
+                </section>
 
-            {/* Bottom Row: Quick Stats & Bid Activity (Left) | Recent Requirements (Right) */}
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-                <div className="flex flex-col gap-6 lg:col-span-1">
-                    <QuickStats />
-                    <BidActivityChart />
+                {/* Row 2: Charts (Side by side) */}
+                <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 px-1">
+                    {/* Status Card (Pie Chart) */}
+                    <div className="xl:col-span-1">
+                        <StatusCard />
+                    </div>
+                    {/* Earnings Trend (Area Graph) */}
+                    <div className="xl:col-span-2">
+                        <EarningsTrend />
+                    </div>
                 </div>
-                <div className="lg:col-span-2">
-                    <RecentRequirementsTable />
+
+                {/* Row 3: Live Requirements (Simplified as per request) */}
+                <div className="px-1">
+                    <LiveRequirements />
                 </div>
+
+                {/* Row 4: Activity Table */}
+                <section className="px-1 pb-6">
+                    <ActivityTable />
+                </section>
             </div>
         </div>
     );
