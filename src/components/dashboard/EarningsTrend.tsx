@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import {
     Area,
     AreaChart,
@@ -14,107 +15,106 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 const data = [
-    { month: "Sep", earnings: 3.8 },
-    { month: "Oct", earnings: 5.6 },
-    { month: "Nov", earnings: 4.5 },
-    { month: "Dec", earnings: 5.8 },
-    { month: "Jan", earnings: 6.2 },
-    { month: "Feb", earnings: 7.2 },
+    { month: "Sep", earnings: 0 },
+    { month: "Oct", earnings: 2 },
+    { month: "Nov", earnings: 3 },
+    { month: "Dec", earnings: 2.5 },
+    { month: "Jan", earnings: 4 },
+    { month: "Feb", earnings: 3 },
 ];
 
 const chartConfig = {
     earnings: {
         label: "Earnings (₹L)",
-        color: "var(--primary)",
+        color: "#22c55e",
     },
 } satisfies ChartConfig;
 
 export default function EarningsTrend() {
-    return (
-        <Card className="min-h-[280px] w-full border-border bg-card ring-1 ring-border/50 shadow-md overflow-hidden relative group hover:bg-muted/30 dark:hover:bg-muted/10 transition-colors">
-            {/* Top indicator bar using primary color variable */}
-            <div className="absolute top-0 left-0 w-full h-[2.5px] bg-primary z-20" />
+    const router = useRouter();
 
-            <CardHeader className="flex flex-row items-start justify-between px-6 py-5 pb-1 space-y-0 relative z-10 transition-all">
+    return (
+        <div
+            onClick={() => router.push('/billing')}
+            className="flex flex-col rounded-xl border border-border bg-white shadow-none transition-all duration-200 hover:border-primary/30 hover:shadow-sm dark:bg-card relative overflow-hidden h-full cursor-pointer"
+        >
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-[#22c55e]" />
+
+            <div className="flex justify-between items-start pt-6 px-6">
                 <div>
-                    <CardTitle className="text-[16px] font-black tracking-tighter text-foreground leading-none">
+                    <h2 className="text-lg font-bold text-foreground">
                         Earnings Trend
-                    </CardTitle>
-                    <p className="text-[8px] font-black uppercase tracking-[0.2em] text-muted-foreground/30 mt-1.5">
-                        LAST 6 MONTHS PERFORMANCE
+                    </h2>
+                    <p className="text-[11px] text-muted-foreground mt-1">
+                        Last 6 months performance
                     </p>
                 </div>
-                <div className="text-right flex flex-col items-end">
-                    <p className="text-[16px] font-black text-foreground tracking-tighter tabular-nums leading-none">
+                <div className="text-right">
+                    <div className="text-xl font-bold text-foreground">
                         ₹18,27,100
-                    </p>
-                    <div className="flex items-center justify-end gap-1.5 mt-1.5 bg-primary/5 px-2 py-0.5 rounded-full ring-1 ring-primary/20">
-                        <span className="text-[7.5px] font-black text-primary uppercase tracking-widest flex items-center leading-none">
-                            ↗ +12.5% vs last
-                        </span>
+                    </div>
+                    <div className="text-[11px] text-[#22c55e] mt-1 flex items-center justify-end gap-1">
+                        ↗ +12.5%
                     </div>
                 </div>
-            </CardHeader>
+            </div>
 
-            <CardContent className="px-3 pb-3 pt-0 relative z-0 flex flex-col justify-end transition-all">
-                {/* Compact chart height of 190px */}
-                <ChartContainer config={chartConfig} className="h-[190px] w-full mt-2">
-                    <AreaChart data={data} margin={{ top: 10, right: 15, left: 0, bottom: 0 }}>
+            <div className="px-2 pb-2 pt-4 flex-1 flex flex-col justify-end">
+                <ChartContainer config={chartConfig} className="h-[220px] w-full">
+                    <AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                         <defs>
-                            <linearGradient id="earnings-gradient-compact" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.12} />
-                                <stop offset="95%" stopColor="var(--primary)" stopOpacity={0.01} />
+                            <linearGradient id="earnings-gradient-final" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="#22c55e" stopOpacity={0.2} />
+                                <stop offset="95%" stopColor="#22c55e" stopOpacity={0.01} />
                             </linearGradient>
                         </defs>
                         <CartesianGrid
                             vertical={false}
                             strokeOpacity={0.05}
                             strokeDasharray="4 4"
-                            stroke="currentColor"
                         />
                         <XAxis
                             dataKey="month"
                             tickLine={false}
                             axisLine={false}
-                            tick={{ fontSize: 8.5, fontWeight: 900, fill: "var(--muted-foreground)" }}
-                            tickMargin={8}
+                            tick={{ fontSize: 10, fill: "var(--muted-foreground)" }}
+                            tickMargin={12}
                         />
                         <YAxis
                             tickLine={false}
                             axisLine={false}
-                            tick={{ fontSize: 7.5, fontWeight: 900, fill: "var(--muted-foreground)" }}
-                            tickMargin={8}
+                            tick={{ fontSize: 10, fill: "var(--muted-foreground)" }}
+                            tickMargin={12}
                             tickFormatter={(value) => `₹${value}L`}
                         />
                         <ChartTooltip
-                            cursor={{ stroke: "var(--primary)", strokeWidth: 1, strokeDasharray: "4 4" }}
+                            cursor={{ stroke: "#22c55e", strokeWidth: 1.5, strokeDasharray: "4 4" }}
                             content={
                                 <ChartTooltipContent
                                     indicator="line"
-                                    className="bg-card shadow-lg border-border ring-1 ring-border/5 p-2 rounded-lg text-[9px]"
+                                    className="bg-card shadow-lg border-border ring-1 ring-border/10 p-2 rounded-lg text-[10px]"
                                 />
                             }
                         />
                         <Area
                             type="monotone"
                             dataKey="earnings"
-                            stroke="var(--primary)"
-                            strokeWidth={2.5}
-                            fill="url(#earnings-gradient-compact)"
-                            animationDuration={1500}
+                            stroke="#22c55e"
+                            strokeWidth={2}
+                            fill="url(#earnings-gradient-final)"
+                            animationDuration={2000}
                             activeDot={{
-                                r: 3.5,
-                                fill: "var(--primary)",
+                                r: 4,
+                                fill: "#22c55e",
                                 stroke: "var(--card)",
                                 strokeWidth: 2
                             }}
                         />
                     </AreaChart>
                 </ChartContainer>
-            </CardContent>
-        </Card>
+            </div>
+        </div>
     );
 }

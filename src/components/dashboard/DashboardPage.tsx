@@ -8,38 +8,35 @@ import ActivityTable from "./ActivityTable";
 
 export default function DashboardPage() {
     return (
-        <div className="flex flex-col gap-4 p-3 md:p-5 bg-background min-h-screen text-foreground">
-            {/* Header removed as requested */}
+        <div className="flex flex-col p-2 md:p-4 lg:p-5 lg:pt-3 bg-background min-h-screen text-foreground">
+            {/* Container with requested Grid Row Class: gap-6 */}
+            <div className="flex flex-col gap-6">
 
-            {/* Main Layout Container with tighter gap:3 */}
-            <div className="flex flex-col gap-4">
-
-                {/* Row 1: Compact Stats */}
-                <section className="px-1">
+                {/* Row 1: Stats Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
                     <StatsCards />
-                </section>
+                </div>
 
-                {/* Row 2: Charts (Side by side) */}
-                <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 px-1">
-                    {/* Status Card (Pie Chart) */}
-                    <div className="xl:col-span-1">
-                        <StatusCard />
-                    </div>
-                    {/* Earnings Trend (Area Graph) */}
+                {/* Row 2: Charts (The requested xl:grid-cols-3 pattern) */}
+                <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
                     <div className="xl:col-span-2">
                         <EarningsTrend />
                     </div>
+                    <div className="xl:col-span-1">
+                        <StatusCard />
+                    </div>
                 </div>
 
-                {/* Row 3: Live Requirements (Simplified as per request) */}
-                <div className="px-1">
+                {/* Row 3: Live Requirements (Full width grid list) */}
+                <div className="w-full">
                     <LiveRequirements />
                 </div>
 
-                {/* Row 4: Activity Table */}
-                <section className="px-1 pb-6">
+                {/* Row 4: Detailed Activity Table */}
+                <div className="w-full pb-10">
                     <ActivityTable />
-                </section>
+                </div>
+
             </div>
         </div>
     );

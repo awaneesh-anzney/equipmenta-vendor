@@ -2,7 +2,6 @@
 
 import { Eye, Gavel, Truck, Wallet, ChevronRight } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 
 const ACTIONS = [
     {
