@@ -8,7 +8,7 @@ export default function VendorLayout({ children }: { children: React.ReactNode }
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
-        <div className="flex h-screen overflow-hidden bg-background">
+        <div className="flex h-screen overflow-hidden bg-muted/40 dark:bg-background">
 
             {/* ── Mobile overlay backdrop ── */}
             {sidebarOpen && (
@@ -24,11 +24,15 @@ export default function VendorLayout({ children }: { children: React.ReactNode }
                 onClose={() => setSidebarOpen(false)}
             />
 
-            {/* ── Main area ── */}
+            {/* ── Right Side Area ── */}
             <div className="flex flex-1 flex-col overflow-hidden min-w-0">
                 <Header onMenuToggle={() => setSidebarOpen(v => !v)} />
-                <main className="flex-1 overflow-y-auto p-4 sm:p-5 lg:p-7">
-                    {children}
+
+                {/* ── MAIN Dashboard Area ── */}
+                <main className="flex-1 overflow-y-auto px-4 py-4 md:px-7 md:py-6">
+                    <div className="max-w-[1440px] mx-auto w-full">
+                        {children}
+                    </div>
                 </main>
             </div>
         </div>
