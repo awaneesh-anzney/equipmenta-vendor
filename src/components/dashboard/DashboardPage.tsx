@@ -1,48 +1,42 @@
 "use client";
 
-import { currentVendor } from "@/data/mockdata";
-import StatsRow from "./StatsRow";
-import RevenueTrendChart from "./RevenueTrendChart";
-import FleetStatusChart from "./FleetStatusChart";
-import RecentRequirementsTable from "./RecentRequirementsTable";
-import BidActivityChart from "./BidActivityChart";
-import QuickStats from "./QuickStats";
+import StatsCards from "./StatsCards";
+import EarningsTrend from "./EarningsTrend";
+import StatusCard from "./StatusCard";
+import LiveRequirements from "./LiveRequirements";
+import ActivityTable from "./ActivityTable";
 
 export default function DashboardPage() {
     return (
-        <div className="flex w-full flex-col gap-6 pb-8">
-            {/* Welcome Header */}
-            <div>
-                <h2 className="text-lg font-bold text-foreground sm:text-xl">
-                    Welcome back, {currentVendor.name} 👋
-                </h2>
-                <p className="mt-1 text-sm text-muted-foreground">
-                    {currentVendor.company} — here&apos;s a snapshot of your activity
-                </p>
-            </div>
+        <div className="flex flex-col p-2 md:p-4 lg:p-5 lg:pt-3 bg-background min-h-screen text-foreground">
+            {/* Container with requested Grid Row Class: gap-6 */}
+            <div className="flex flex-col gap-6">
 
-            {/* Top Stats Row */}
-            <StatsRow />
+                {/* Row 1: Stats Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                    <StatsCards />
+                </div>
 
-            {/* Middle Row: Revenue Trend (Left) & Fleet Status (Right) */}
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-                <div className="lg:col-span-2">
-                    <RevenueTrendChart />
+                {/* Row 2: Charts (The requested xl:grid-cols-3 pattern) */}
+                <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
+                    <div className="xl:col-span-2">
+                        <EarningsTrend />
+                    </div>
+                    <div className="xl:col-span-1">
+                        <StatusCard />
+                    </div>
                 </div>
-                <div className="lg:col-span-1">
-                    <FleetStatusChart />
-                </div>
-            </div>
 
-            {/* Bottom Row: Quick Stats & Bid Activity (Left) | Recent Requirements (Right) */}
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-                <div className="flex flex-col gap-6 lg:col-span-1">
-                    <QuickStats />
-                    <BidActivityChart />
+                {/* Row 3: Live Requirements (Full width grid list) */}
+                <div className="w-full">
+                    <LiveRequirements />
                 </div>
-                <div className="lg:col-span-2">
-                    <RecentRequirementsTable />
+
+                {/* Row 4: Detailed Activity Table */}
+                <div className="w-full pb-10">
+                    <ActivityTable />
                 </div>
+
             </div>
         </div>
     );
