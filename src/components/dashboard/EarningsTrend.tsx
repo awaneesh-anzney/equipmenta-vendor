@@ -15,6 +15,7 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/ui/chart";
+import { vendorDashboardStats, formatSAR } from "@/data/mockdata";
 
 const data = [
     { month: "Sep", earnings: 0 },
@@ -27,7 +28,7 @@ const data = [
 
 const chartConfig = {
     earnings: {
-        label: "Earnings (₹L)",
+        label: "Earnings (SAR L)",
         color: "#22c55e",
     },
 } satisfies ChartConfig;
@@ -53,7 +54,7 @@ export default function EarningsTrend() {
                 </div>
                 <div className="text-right">
                     <div className="text-xl font-bold text-foreground">
-                        ₹18,27,100
+                        {formatSAR(vendorDashboardStats.totalEarnings)}
                     </div>
                     <div className="text-[11px] text-[#22c55e] mt-1 flex items-center justify-end gap-1">
                         ↗ +12.5%
@@ -87,7 +88,7 @@ export default function EarningsTrend() {
                             axisLine={false}
                             tick={{ fontSize: 10, fill: "var(--muted-foreground)" }}
                             tickMargin={12}
-                            tickFormatter={(value) => `₹${value}L`}
+                            tickFormatter={(value) => `${value}L SAR`}
                         />
                         <ChartTooltip
                             cursor={{ stroke: "#22c55e", strokeWidth: 1.5, strokeDasharray: "4 4" }}

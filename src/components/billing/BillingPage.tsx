@@ -8,7 +8,7 @@ import {
     Table, TableBody, TableCell,
     TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
-import { mockVendorBilling, computeBillingSummary, formatINR, type BillingRecord } from '@/data/mockdata';
+import { mockVendorBilling, computeBillingSummary, formatSAR, type BillingRecord } from '@/data/mockdata';
 import { BillingDetailsDialog } from './BillingDetailsDialog';
 
 const statusCls: Record<string, string> = {
@@ -23,9 +23,9 @@ export default function BillingPage() {
     const [selectedBill, setSelectedBill] = useState<BillingRecord | null>(null);
 
     const summary = [
-        { label: 'Total Billed', value: formatINR(total), cls: '' },
-        { label: 'Received', value: formatINR(received), cls: 'border-chart-2/30 bg-chart-2/5' },
-        { label: 'Outstanding', value: formatINR(outstanding), cls: 'border-chart-1/30 bg-chart-1/5' },
+        { label: 'Total Billed', value: formatSAR(total), cls: '' },
+        { label: 'Received', value: formatSAR(received), cls: 'border-chart-2/30 bg-chart-2/5' },
+        { label: 'Outstanding', value: formatSAR(outstanding), cls: 'border-chart-1/30 bg-chart-1/5' },
     ];
 
     return (
@@ -87,13 +87,13 @@ export default function BillingPage() {
                                         {b.totalTrips > 0 ? b.totalTrips : '—'}
                                     </TableCell>
                                     <TableCell className="py-3 px-3 text-foreground text-[12.5px] whitespace-nowrap">
-                                        {formatINR(b.grossAmount)}
+                                        {formatSAR(b.grossAmount)}
                                     </TableCell>
                                     <TableCell className="py-3 px-3 text-destructive text-[12.5px] whitespace-nowrap">
-                                        {b.penaltyDeduction > 0 ? `-${formatINR(b.penaltyDeduction)}` : '—'}
+                                        {b.penaltyDeduction > 0 ? `-${formatSAR(b.penaltyDeduction)}` : '—'}
                                     </TableCell>
                                     <TableCell className="py-3 px-3 font-bold text-foreground text-[12.5px] whitespace-nowrap">
-                                        {formatINR(b.netAmount)}
+                                        {formatSAR(b.netAmount)}
                                     </TableCell>
                                     <TableCell className="py-3 px-3">
                                         <Badge className={`text-xs font-semibold whitespace-nowrap ${statusCls[b.status]}`}>

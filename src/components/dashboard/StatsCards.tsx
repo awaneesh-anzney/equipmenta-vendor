@@ -4,10 +4,12 @@ import { ClipboardList, Truck, Wallet, TrendingUp, ArrowUpRight } from "lucide-r
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
+import { vendorDashboardStats, formatSAR } from "@/data/mockdata";
+
 const STATS = [
     {
         label: "ACTIVE WORK ORDERS",
-        value: "3",
+        value: vendorDashboardStats.activeOrders.toString(),
         trend: "+1 this week",
         icon: ClipboardList,
         color: "#22c55e",
@@ -15,15 +17,15 @@ const STATS = [
     },
     {
         label: "VEHICLES DEPLOYED",
-        value: "4",
-        trend: "4 total fleet",
+        value: vendorDashboardStats.vehiclesDeployed.toString(),
+        trend: `${vendorDashboardStats.vehiclesDeployed} total fleet`,
         icon: Truck,
         color: "#3b82f6",
         route: "/myvehicles"
     },
     {
         label: "PENDING PAYMENTS",
-        value: "₹9,25,600",
+        value: formatSAR(vendorDashboardStats.pendingPayments),
         trend: "2 invoices",
         icon: Wallet,
         color: "#eab308",
@@ -31,7 +33,7 @@ const STATS = [
     },
     {
         label: "TOTAL EARNINGS",
-        value: "₹18,27,100",
+        value: formatSAR(vendorDashboardStats.totalEarnings),
         trend: "+12% vs last month",
         icon: TrendingUp,
         color: "#22c55e",

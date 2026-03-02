@@ -57,7 +57,7 @@ export function AddVehicleDialog({ open, onClose, onSubmit }: AddVehicleDialogPr
                     <div className="flex flex-col gap-1.5">
                         <Label className="text-foreground text-[12.5px]">Vehicle Number</Label>
                         <Input
-                            placeholder="e.g. JH-01-AB-1234"
+                            placeholder="e.g. KSA-1234-ABD"
                             value={form.vehicleNumber}
                             onChange={(e) => setForm({ ...form, vehicleNumber: e.target.value })}
                             className="bg-background border-input text-foreground h-9"
@@ -98,7 +98,7 @@ export function AddVehicleDialog({ open, onClose, onSubmit }: AddVehicleDialogPr
                     <div className="flex flex-col gap-1.5">
                         <Label className="text-foreground text-[12.5px]">Driver Name</Label>
                         <Input
-                            placeholder="Full Name"
+                            placeholder="e.g. Mohammed Al-Zahrani"
                             value={form.driverName}
                             onChange={(e) => setForm({ ...form, driverName: e.target.value })}
                             className="bg-background border-input text-foreground h-9"

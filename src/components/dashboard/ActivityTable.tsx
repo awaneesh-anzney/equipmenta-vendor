@@ -5,21 +5,42 @@ import { useRouter } from "next/navigation";
 import { Hammer, Truck, Receipt } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+import { mockVendorBids, mockVendorWorkOrders, mockVendorBilling, formatSAR } from "@/data/mockdata";
+
+function getMonthShort(monthStr: string) {
+    const parts = monthStr.split(' ');
+    if (parts.length === 2) return `${parts[0].substring(0, 3)} ${parts[1]}`;
+    return monthStr;
+}
+
 const DATA = {
-    bids: [
-        { id: "REQ-001", eq: "Hyva", qty: 10, rate: "₹1,850", joining: "2 days", status: "ACCEPTED", route: "/mybids" },
-        { id: "REQ-001", eq: "Water Tanker", qty: 5, rate: "₹2,800", joining: "1 days", status: "ACCEPTED", route: "/mybids" },
-        { id: "REQ-002", eq: "Dumper", qty: 8, rate: "₹3,200", joining: "3 days", status: "ACTIVE", route: "/mybids" },
-        { id: "REQ-004", eq: "Trailer", qty: 5, rate: "₹45", joining: "2 days", status: "ACCEPTED", route: "/mybids" },
-    ],
-    orders: [
-        { id: "WO-001", eq: "Hyva", qty: 10, rate: "₹1,850", joining: "Active", status: "DEPLOYED", route: "/workorders" },
-        { id: "WO-005", eq: "Water Tanker", qty: 5, rate: "₹2,800", joining: "Active", status: "DEPLOYED", route: "/workorders" },
-    ],
-    billing: [
-        { id: "BILL-001", eq: "Hyva", qty: 10, rate: "₹1,850", joining: "Jan 2026", status: "PAID", route: "/billing" },
-        { id: "BILL-004", eq: "Hyva", qty: 4, rate: "₹1,850", joining: "Feb 2026", status: "PENDING", route: "/billing" },
-    ]
+    bids: mockVendorBids.slice(0, 4).map(b => ({
+        id: b.requirementId,
+        eq: b.vehicleCategory,
+        qty: b.vehiclesOffering,
+        rate: formatSAR(b.rate),
+        joining: b.joiningDays + " days",
+        status: b.status,
+        route: "/mybids"
+    })),
+    orders: mockVendorWorkOrders.slice(0, 4).map(w => ({
+        id: w.id,
+        eq: w.vehicleCategory,
+        qty: w.quantity,
+        rate: formatSAR(w.rate),
+        joining: w.status === 'ACTIVE' ? "Active" : "Pending",
+        status: w.status === "ACTIVE" ? "DEPLOYED" : w.status,
+        route: "/workorders"
+    })),
+    billing: mockVendorBilling.slice(0, 4).map(b => ({
+        id: b.id,
+        eq: b.requirementId,
+        qty: b.totalTrips > 0 ? b.totalTrips : "-",
+        rate: formatSAR(b.rate),
+        joining: getMonthShort(b.month),
+        status: b.status,
+        route: "/billing"
+    }))
 };
 
 export default function ActivityTable() {

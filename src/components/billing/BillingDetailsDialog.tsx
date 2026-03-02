@@ -7,7 +7,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { type BillingRecord, formatINR } from '@/data/mockdata';
+import { type BillingRecord, formatSAR } from '@/data/mockdata';
 
 interface BillingDetailsDialogProps {
     bill: BillingRecord | null;
@@ -49,33 +49,33 @@ export function BillingDetailsDialog({ bill, open, onClose }: BillingDetailsDial
                     <DetailItem label="Client" value={bill.clientName} />
                     <DetailItem label="Month" value={bill.month} />
                     <DetailItem label="Total Trips" value={bill.totalTrips > 0 ? bill.totalTrips : '—'} />
-                    <DetailItem label="Rate" value={formatINR(bill.rate)} />
+                    <DetailItem label="Rate" value={formatSAR(bill.rate)} />
                 </div>
 
                 <div className="mt-8 space-y-4 rounded-xl border border-border bg-muted/20 p-5">
                     <div className="flex justify-between items-center text-[13px]">
                         <span className="text-muted-foreground">Gross Amount</span>
-                        <span className="font-semibold text-foreground">{formatINR(bill.grossAmount)}</span>
+                        <span className="font-semibold text-foreground">{formatSAR(bill.grossAmount)}</span>
                     </div>
 
                     {bill.penaltyDeduction > 0 && (
                         <div className="flex justify-between items-center text-[13px]">
                             <span className="text-muted-foreground">Penalty</span>
-                            <span className="font-semibold text-destructive">-{formatINR(bill.penaltyDeduction)}</span>
+                            <span className="font-semibold text-destructive">-{formatSAR(bill.penaltyDeduction)}</span>
                         </div>
                     )}
 
                     {bill.extraShiftBonus > 0 && (
                         <div className="flex justify-between items-center text-[13px]">
                             <span className="text-muted-foreground">Extra Shift Bonus</span>
-                            <span className="font-semibold text-chart-2">+{formatINR(bill.extraShiftBonus)}</span>
+                            <span className="font-semibold text-chart-2">+{formatSAR(bill.extraShiftBonus)}</span>
                         </div>
                     )}
 
                     {bill.dieselDeduction > 0 && (
                         <div className="flex justify-between items-center text-[13px]">
                             <span className="text-muted-foreground">Diesel Deduction</span>
-                            <span className="font-semibold text-destructive">-{formatINR(bill.dieselDeduction)}</span>
+                            <span className="font-semibold text-destructive">-{formatSAR(bill.dieselDeduction)}</span>
                         </div>
                     )}
 
@@ -83,7 +83,7 @@ export function BillingDetailsDialog({ bill, open, onClose }: BillingDetailsDial
 
                     <div className="flex justify-between items-center">
                         <span className="text-[14px] font-bold text-foreground">Net Payable</span>
-                        <span className="text-[18px] font-black text-foreground">{formatINR(bill.netAmount)}</span>
+                        <span className="text-[18px] font-black text-foreground">{formatSAR(bill.netAmount)}</span>
                     </div>
                 </div>
 
