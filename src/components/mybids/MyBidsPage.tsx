@@ -4,7 +4,7 @@ import {
     Table, TableBody, TableCell,
     TableHead, TableHeader, TableRow,
 } from '@/components/ui/table';
-import { mockVendorBids, getRequirementById } from '@/data/mockdata';
+import { mockVendorBids, getRequirementById, formatSAR } from '@/data/mockdata';
 
 const statusCls: Record<string, string> = {
     ACTIVE: 'bg-chart-1/15 text-chart-1 border-chart-1/20',
@@ -57,7 +57,7 @@ export default function MyBidsPage() {
                                             ×{b.vehiclesOffering}
                                         </TableCell>
                                         <TableCell className="py-3.5 px-4 text-foreground text-[13px] font-medium whitespace-nowrap">
-                                            ₹{b.rate.toLocaleString('en-IN')}/{b.rateType.split(' ')[1]}
+                                            {formatSAR(b.rate)}/{req?.items.find(i => i.id === b.requirementItemId)?.rateType?.split(' ')[1] || 'Trip'}
                                         </TableCell>
                                         <TableCell className="py-3.5 px-4 text-muted-foreground text-[13px] whitespace-nowrap">
                                             {b.createdAt}

@@ -5,44 +5,23 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Clock, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const DATA = [
-    {
-        id: "002",
-        status: "LIVE",
-        bids: 5,
-        project: "Godda Thermal Plant",
-        client: "Adani Power",
-        location: "Godda, Jharkhand",
-        duty: "24hr duty",
-        date: "2026-04-01",
-        types: ["Dumper", "Wheel Loader"],
-        moreCount: 1
-    },
-    {
-        id: "004",
-        status: "LIVE",
-        bids: 11,
-        project: "Rajmahal OCP",
-        client: "ECL",
-        location: "Dumka, Jharkhand",
-        duty: "12hr duty",
-        date: "2026-03-10",
-        types: ["Trailer", "Poclain"],
-        moreCount: 2
-    },
-    {
-        id: "005",
-        status: "LIVE",
-        bids: 3,
-        project: "Mumbai Coastal Road",
-        client: "L&T Construction",
-        location: "Mumbai, Maharashtra",
-        duty: "24hr duty",
-        date: "2026-04-15",
-        types: ["Transit Mixer", "Boom Placer"],
-        moreCount: 2
-    }
-];
+import { mockRequirements } from "@/data/mockdata";
+
+const DATA = mockRequirements
+    .filter(req => req.status === "LIVE")
+    .map(req => ({
+        id: req.id.replace("REQ-0", "").replace("REQ-", ""),
+        fullId: req.id,
+        status: req.status,
+        bids: req.bidsCount,
+        project: req.projectName,
+        client: req.clientName,
+        location: req.siteLocation,
+        duty: req.dutyHours + " duty",
+        date: req.startDate,
+        types: req.items.slice(0, 2).map(item => item.vehicleCategory),
+        moreCount: Math.max(0, req.items.length - 2)
+    }));
 
 export default function LiveRequirements() {
     const router = useRouter();
@@ -87,7 +66,7 @@ export default function LiveRequirements() {
                     >
                         <div>
                             <div className="flex items-center gap-2.5 mb-2">
-                                <span className="text-xs font-medium text-muted-foreground">REQ-{req.id}</span>
+                                <span className="text-xs font-medium text-muted-foreground">{req.fullId}</span>
                                 <span className="text-xs font-bold text-[#22c55e]">{req.status}</span>
                                 <span className="text-xs font-medium text-muted-foreground">• {req.bids} bids</span>
                             </div>

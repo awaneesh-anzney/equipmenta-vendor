@@ -1,7 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { mockVendorWorkOrders } from '@/data/mockdata';
+import { mockVendorWorkOrders, formatSAR, getRequirementById } from '@/data/mockdata';
 
 const statusCls: Record<string, string> = {
     PENDING: 'bg-chart-1/15 text-chart-1 border-chart-1/20',
@@ -34,7 +34,7 @@ export default function WorkOrdersPage() {
                                         {wo.projectName}
                                     </h3>
                                     <p className="text-[12.5px] sm:text-[13px] text-muted-foreground">
-                                        {wo.clientName} · {wo.siteLocation}
+                                        {wo.clientName} · {getRequirementById(wo.requirementId)?.siteLocation || 'Saudi Arabia'}
                                     </p>
                                 </div>
                                 <Badge className={`shrink-0 text-xs font-semibold ${statusCls[wo.status]}`}>
@@ -48,7 +48,7 @@ export default function WorkOrdersPage() {
                             <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-x-6 gap-y-3">
                                 {[
                                     { label: 'Equipment', val: `${wo.vehicleCategory} ×${wo.quantity}` },
-                                    { label: 'Rate', val: `₹${wo.rate.toLocaleString('en-IN')} / ${wo.rateType.split(' ')[1]}` },
+                                    { label: 'Rate', val: `${formatSAR(wo.rate)} / ${wo.rateType.split(' ')[1] || wo.rateType}` },
                                     { label: 'Validity', val: wo.validity },
                                     { label: 'Payment', val: wo.paymentCycle },
                                     { label: 'Penalty', val: wo.penaltyClause },

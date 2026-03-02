@@ -101,7 +101,7 @@ export function BidDialog({ req, item, open, onClose, onSubmit }: BidDialogProps
                     {/* Rate + Rate Type */}
                     <div className="grid grid-cols-2 gap-3">
                         <div className="flex flex-col gap-1.5">
-                            <Label className="text-foreground text-[12.5px]">Rate (₹)</Label>
+                            <Label className="text-foreground text-[12.5px]">Rate (SAR)</Label>
                             <Input
                                 type="number"
                                 placeholder="e.g. 1850"
