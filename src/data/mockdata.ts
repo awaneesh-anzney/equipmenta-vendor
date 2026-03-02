@@ -158,7 +158,7 @@ export const mockRequirements: Requirement[] = [
             { id: 'RI-003', vehicleCategory: 'Water Tanker', capacity: '10000 Ltr', quantityRequired: 5, quantityAllocated: 5, rateType: 'Per Day' },
         ],
         reportingTime: '06:00 AM', dutyHours: '12hr', dieselBy: 'Company',
-        paymentCycle: '30 days', penaltyRule: 'SAR 500/day absence',
+        paymentCycle: '30 days', penaltyRule: '500 SAR/day absence',
         startDate: '2026-03-01', endDate: '2026-06-30', replacementRequired: true,
         status: 'AWARDED', createdAt: '2026-02-15', bidsCount: 8,
     },
@@ -171,7 +171,7 @@ export const mockRequirements: Requirement[] = [
             { id: 'RI-006', vehicleCategory: 'Mobile Crane', capacity: '25 Ton', quantityRequired: 2, quantityAllocated: 0, rateType: 'Per Day' },
         ],
         reportingTime: '07:00 AM', dutyHours: '24hr', dieselBy: 'Vendor',
-        paymentCycle: '15 days', penaltyRule: 'SAR 1000/day absence',
+        paymentCycle: '15 days', penaltyRule: '1000 SAR/day absence',
         startDate: '2026-04-01', endDate: '2026-09-30', replacementRequired: true,
         status: 'LIVE', createdAt: '2026-02-18', bidsCount: 5,
     },
@@ -183,7 +183,7 @@ export const mockRequirements: Requirement[] = [
             { id: 'RI-008', vehicleCategory: 'JCB', capacity: '3DX', quantityRequired: 4, quantityAllocated: 0, rateType: 'Per Hour' },
         ],
         reportingTime: '06:30 AM', dutyHours: '12hr', dieselBy: 'Company',
-        paymentCycle: '30 days', penaltyRule: 'SAR 300/day absence',
+        paymentCycle: '30 days', penaltyRule: '300 SAR/day absence',
         startDate: '2026-03-15', endDate: '2026-07-15', replacementRequired: false,
         status: 'DRAFT', createdAt: '2026-02-20', bidsCount: 0,
     },
@@ -197,7 +197,7 @@ export const mockRequirements: Requirement[] = [
             { id: 'RI-012', vehicleCategory: 'Motor Grader', capacity: '180 HP', quantityRequired: 1, quantityAllocated: 1, rateType: 'Per Day' },
         ],
         reportingTime: '05:00 AM', dutyHours: '12hr', dieselBy: 'Company',
-        paymentCycle: '15 days', penaltyRule: 'SAR 700/day absence',
+        paymentCycle: '15 days', penaltyRule: '700 SAR/day absence',
         startDate: '2026-03-10', endDate: '2026-08-10', replacementRequired: true,
         status: 'LIVE', createdAt: '2026-02-17', bidsCount: 11,
     },
@@ -211,7 +211,7 @@ export const mockRequirements: Requirement[] = [
             { id: 'RI-016', vehicleCategory: 'Piling Rig', capacity: '1200mm', quantityRequired: 2, quantityAllocated: 0, rateType: 'Per Day' },
         ],
         reportingTime: '06:00 AM', dutyHours: '24hr', dieselBy: 'Vendor',
-        paymentCycle: '30 days', penaltyRule: 'SAR 2000/day absence',
+        paymentCycle: '30 days', penaltyRule: '2000 SAR/day absence',
         startDate: '2026-04-15', endDate: '2027-04-14', replacementRequired: true,
         status: 'LIVE', createdAt: '2026-02-19', bidsCount: 3,
     },
@@ -239,13 +239,13 @@ export const mockBids: Bid[] = [
 ];
 
 export const mockWorkOrders: WorkOrder[] = [
-    { id: 'WO-001', requirementId: 'REQ-001', vendorId: '2', vendorName: 'Al-Qahtani Transport', clientName: 'NEOM Company', projectName: 'NEOM Mega City', vehicleCategory: 'Hyva', quantity: 10, rate: 850, rateType: 'Per Trip', validity: '01 Mar - 30 Jun 2026', penaltyClause: 'SAR 500/day absence', paymentCycle: '30 days', status: 'ACTIVE', createdAt: '2026-02-17' },
-    { id: 'WO-002', requirementId: 'REQ-001', vendorId: '6', vendorName: 'Al-Otaibi Logistics', clientName: 'NEOM Company', projectName: 'NEOM Mega City', vehicleCategory: 'Hyva', quantity: 10, rate: 900, rateType: 'Per Trip', validity: '01 Mar - 30 Jun 2026', penaltyClause: 'SAR 500/day absence', paymentCycle: '30 days', status: 'ACTIVE', createdAt: '2026-02-17' },
-    { id: 'WO-003', requirementId: 'REQ-001', vendorId: '5', vendorName: 'Al-Mutlaq Fleet Services', clientName: 'NEOM Company', projectName: 'NEOM Mega City', vehicleCategory: 'Hyva', quantity: 5, rate: 820, rateType: 'Per Trip', validity: '01 Mar - 30 Jun 2026', penaltyClause: 'SAR 500/day absence', paymentCycle: '30 days', status: 'PENDING', createdAt: '2026-02-17' },
-    { id: 'WO-004', requirementId: 'REQ-001', vendorId: '8', vendorName: 'Saudi Heavy Equipment', clientName: 'NEOM Company', projectName: 'NEOM Mega City', vehicleCategory: 'Excavator', quantity: 5, rate: 1500, rateType: 'Per Hour', validity: '01 Mar - 30 Jun 2026', penaltyClause: 'SAR 500/day absence', paymentCycle: '30 days', status: 'ACTIVE', createdAt: '2026-02-17' },
-    { id: 'WO-005', requirementId: 'REQ-001', vendorId: '2', vendorName: 'Al-Qahtani Transport', clientName: 'NEOM Company', projectName: 'NEOM Mega City', vehicleCategory: 'Water Tanker', quantity: 5, rate: 1200, rateType: 'Per Day', validity: '01 Mar - 30 Jun 2026', penaltyClause: 'SAR 500/day absence', paymentCycle: '30 days', status: 'ACTIVE', createdAt: '2026-02-17' },
-    { id: 'WO-006', requirementId: 'REQ-004', vendorId: '2', vendorName: 'Al-Qahtani Transport', clientName: 'Saudi Ports Authority', projectName: 'Jubail Industrial Port', vehicleCategory: 'Trailer', quantity: 5, rate: 25, rateType: 'Per Ton', validity: '10 Mar - 10 Aug 2026', penaltyClause: 'SAR 700/day absence', paymentCycle: '15 days', status: 'ACTIVE', createdAt: '2026-02-18' },
-    { id: 'WO-007', requirementId: 'REQ-004', vendorId: '8', vendorName: 'Saudi Heavy Equipment', clientName: 'Saudi Ports Authority', projectName: 'Jubail Industrial Port', vehicleCategory: 'Poclain', quantity: 2, rate: 1600, rateType: 'Per Hour', validity: '10 Mar - 10 Aug 2026', penaltyClause: 'SAR 700/day absence', paymentCycle: '15 days', status: 'PENDING', createdAt: '2026-02-18' },
+    { id: 'WO-001', requirementId: 'REQ-001', vendorId: '2', vendorName: 'Al-Qahtani Transport', clientName: 'NEOM Company', projectName: 'NEOM Mega City', vehicleCategory: 'Hyva', quantity: 10, rate: 850, rateType: 'Per Trip', validity: '01 Mar - 30 Jun 2026', penaltyClause: '500 SAR/day absence', paymentCycle: '30 days', status: 'ACTIVE', createdAt: '2026-02-17' },
+    { id: 'WO-002', requirementId: 'REQ-001', vendorId: '6', vendorName: 'Al-Otaibi Logistics', clientName: 'NEOM Company', projectName: 'NEOM Mega City', vehicleCategory: 'Hyva', quantity: 10, rate: 900, rateType: 'Per Trip', validity: '01 Mar - 30 Jun 2026', penaltyClause: '500 SAR/day absence', paymentCycle: '30 days', status: 'ACTIVE', createdAt: '2026-02-17' },
+    { id: 'WO-003', requirementId: 'REQ-001', vendorId: '5', vendorName: 'Al-Mutlaq Fleet Services', clientName: 'NEOM Company', projectName: 'NEOM Mega City', vehicleCategory: 'Hyva', quantity: 5, rate: 820, rateType: 'Per Trip', validity: '01 Mar - 30 Jun 2026', penaltyClause: '500 SAR/day absence', paymentCycle: '30 days', status: 'PENDING', createdAt: '2026-02-17' },
+    { id: 'WO-004', requirementId: 'REQ-001', vendorId: '8', vendorName: 'Saudi Heavy Equipment', clientName: 'NEOM Company', projectName: 'NEOM Mega City', vehicleCategory: 'Excavator', quantity: 5, rate: 1500, rateType: 'Per Hour', validity: '01 Mar - 30 Jun 2026', penaltyClause: '500 SAR/day absence', paymentCycle: '30 days', status: 'ACTIVE', createdAt: '2026-02-17' },
+    { id: 'WO-005', requirementId: 'REQ-001', vendorId: '2', vendorName: 'Al-Qahtani Transport', clientName: 'NEOM Company', projectName: 'NEOM Mega City', vehicleCategory: 'Water Tanker', quantity: 5, rate: 1200, rateType: 'Per Day', validity: '01 Mar - 30 Jun 2026', penaltyClause: '500 SAR/day absence', paymentCycle: '30 days', status: 'ACTIVE', createdAt: '2026-02-17' },
+    { id: 'WO-006', requirementId: 'REQ-004', vendorId: '2', vendorName: 'Al-Qahtani Transport', clientName: 'Saudi Ports Authority', projectName: 'Jubail Industrial Port', vehicleCategory: 'Trailer', quantity: 5, rate: 25, rateType: 'Per Ton', validity: '10 Mar - 10 Aug 2026', penaltyClause: '700 SAR/day absence', paymentCycle: '15 days', status: 'ACTIVE', createdAt: '2026-02-18' },
+    { id: 'WO-007', requirementId: 'REQ-004', vendorId: '8', vendorName: 'Saudi Heavy Equipment', clientName: 'Saudi Ports Authority', projectName: 'Jubail Industrial Port', vehicleCategory: 'Poclain', quantity: 2, rate: 1600, rateType: 'Per Hour', validity: '10 Mar - 10 Aug 2026', penaltyClause: '700 SAR/day absence', paymentCycle: '15 days', status: 'PENDING', createdAt: '2026-02-18' },
 ];
 
 export const mockVehicles: Vehicle[] = [
@@ -329,7 +329,7 @@ export function getRequirementById(id: string): Requirement | undefined {
 }
 
 export function formatSAR(amount: number): string {
-    return 'SAR ' + amount.toLocaleString('en-SA');
+    return amount.toLocaleString('en-SA') + ' SAR';
 }
 
 export function computeBillingSummary(records: BillingRecord[]) {

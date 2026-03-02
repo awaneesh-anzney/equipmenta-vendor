@@ -88,7 +88,7 @@ export default function EarningsTrend() {
                             axisLine={false}
                             tick={{ fontSize: 10, fill: "var(--muted-foreground)" }}
                             tickMargin={12}
-                            tickFormatter={(value) => `SAR ${value}L`}
+                            tickFormatter={(value) => `${value}L SAR`}
                         />
                         <ChartTooltip
                             cursor={{ stroke: "#22c55e", strokeWidth: 1.5, strokeDasharray: "4 4" }}
