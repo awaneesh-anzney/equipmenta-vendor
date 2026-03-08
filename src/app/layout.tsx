@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Equipment Share — Fleet Management",
+  title: "FleetShare360 — Fleet Management",
   description: "Professional equipment bidding and fleet management platform",
 };
 
