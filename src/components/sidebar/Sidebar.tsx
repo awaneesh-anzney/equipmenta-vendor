@@ -58,7 +58,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                     {!isCollapsed && (
                         <div className="min-w-0 transition-opacity duration-300">
                             <p className="truncate text-[14px] font-extrabold uppercase leading-none tracking-wide text-foreground">
-                                Equipment Share
+                                FleetShare360
                             </p>
                             <p className="mt-0.5 text-[10px] uppercase leading-none tracking-widest text-muted-foreground">
                                 Vendor Panel
